@@ -6,6 +6,12 @@ sudo apt-get update
 sudo apt-get install google-chrome-stable
 
 
+sudo apt-get install x11vnc
+x11vnc -storepasswd
+x11vnc -usepw
+
+/etc/init/x11vnc.conf
+
 # description "start and stop x11vnc"
 
 description "x11vnc"
