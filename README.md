@@ -4,3 +4,21 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-ke
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt-get update 
 sudo apt-get install google-chrome-stable
+
+
+# description "start and stop x11vnc"
+
+description "x11vnc"
+
+start on runlevel [2345]
+stop on runlevel [^2345]
+
+console log
+#chdir /home/
+#setuid 1000
+#setgid 1000
+
+respawn
+respawn limit 20 5
+
+exec x11vnc -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth /var/run/lightdm/root/:0 -usepw
